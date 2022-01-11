@@ -12,8 +12,8 @@ export default function LoginPage(props) {
                     <input type="text" placeholder='Username' require className='loginInput' />
                     <input type="password" placeholder='Password' require className='loginInput' />
                     <button type='submit' className='loginButton'>Log In</button>
-                    <span className=' loginSpan'>Don't have an account?&nbsp;
-                        <Link to='/register' className='loginRegisterLink'>Sign up now</Link>
+                    <span className=' loginSpan'>Don't have an account yet?&nbsp;
+                        <Link to='/register' className='loginRegisterLink'>Sign up</Link>
                     </span>
                 </form>
             </div>

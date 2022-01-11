@@ -13,8 +13,8 @@ export default function Register(props) {
                     <input type="password" placeholder='Password' require className='registerInput' />
                     <input type="password" placeholder='Confirm password' require className='registerInput' />
                     <button type='submit' className='registerButton'>Sign Up</button>
-                    <span className=' registerSpan'>Back to&nbsp;
-                        <Link to='/login' className='registerRegisterLink'>Log In</Link>
+                    <span className=' registerSpan'>Already have an account?&nbsp;
+                        <Link to='/login' className='registerRegisterLink'>Log in</Link>
                     </span>
                 </form>
             </div>
