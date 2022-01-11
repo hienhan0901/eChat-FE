@@ -1,11 +1,23 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './register.css'
 
 export default function Register(props) {
     
 
     return (
         <>
-            register
+            <div className="registerContainer">
+                <form className="registerForm">
+                    <input type="text" placeholder='Username' require className='registerInput' />
+                    <input type="password" placeholder='Password' require className='registerInput' />
+                    <input type="password" placeholder='Confirm password' require className='registerInput' />
+                    <button type='submit' className='registerButton'>Sign Up</button>
+                    <span className=' registerSpan'>Back to&nbsp;
+                        <Link to='/login' className='registerRegisterLink'>Log In</Link>
+                    </span>
+                </form>
+            </div>
         </>
     )
 }
