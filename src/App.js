@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <div>
+        {/* <div>
           <ul>
             <li>
               <Link to="/login">Login</Link>
@@ -23,18 +23,18 @@ function App() {
               <Link to="/register">Register</Link>
             </li>
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/">Dashboard</Link>
             </li>
-          </ul>
+          </ul> */}
           <Routes>
             <Route path="/login" element={<Login />}>
             </Route>
             <Route path="/register" element={<Register />}>
             </Route>
-            <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="/" element={<Dashboard />}>
             </Route>
           </Routes>
-        </div>
+        {/* </div> */}
       </BrowserRouter>
     </div>
   );

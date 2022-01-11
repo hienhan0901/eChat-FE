@@ -1,66 +1,77 @@
 .registerContainer {
-    background-color: royalblue;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .registerForm {
-    height: 250px;
-    width: 250px;
-    padding: 20px;
-    margin: 50px;
-    right: 100%;
-    border-radius: 2px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  }
-  
-  .registerInput{
-      height: 40px;
-      border: none;
-      border-radius: 2px;
-      font-size: 13px;
-      padding-left: 20px;
-      outline: 1px grey solid;
-      caret-color: royalblue;
-  }
-  .registerInput:focus{
-      outline: solid 2px royalblue;
-  }
-  
-  .registerButton{
-      height: 40px;
-      border: none;
-      border-radius: 2px;
-      font-size: 13px;
-      font-weight: bold;
-      background-color: royalblue;
-      color: white;
-  }
-  
-  .registerButton:focus{
-      outline: none;
-  }
-  
-  .registerButton:hover {
-      background-color: rgb(55, 97, 224);
-  }
-  
-  .registerSpan {
-      color: black;
-      font-size: 13px;
-  
-  }
-  
-  .registerRegisterLink {
-      font-weight: bold;
-      color: black;
-      text-decoration: none;
-  }
-  
-  .registerRegisterLink:hover {
-      text-decoration: underline;
-  }
+  background-color: royalblue;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.registerForm {
+  height: 250px;
+  width: 250px;
+  padding: 20px;
+  margin: 50px;
+  right: 100%;
+  border-radius: 2px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.registerInput {
+  height: 40px;
+  border: none;
+  border-radius: 2px;
+  font-size: 13px;
+  padding-left: 20px;
+  outline: 1px grey solid;
+  caret-color: royalblue;
+}
+.registerInput:focus {
+  outline: solid 2px royalblue;
+}
+
+.registerButton {
+  height: 40px;
+  border: none;
+  border-radius: 2px;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: royalblue;
+  color: white;
+}
+
+.registerButton:focus {
+  outline: none;
+}
+
+.registerButton:hover {
+  background-color: rgb(55, 97, 224);
+}
+
+.registerSpan {
+  color: black;
+  font-size: 13px;
+}
+
+.registerRegisterLink {
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
+.registerRegisterLink:hover {
+  text-decoration: underline;
+}
+
+.registerLogo {
+  max-height: 200px;
+  margin: 50px;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
