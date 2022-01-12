@@ -50,6 +50,7 @@
 
 .loginButton:hover {
   background-color: rgb(55, 97, 224);
+  cursor: pointer;
 }
 
 .loginSpan {
