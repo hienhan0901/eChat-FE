@@ -15,7 +15,6 @@ import AddConversation from "../../components/addConversation";
 io.connect(`${process.env.REACT_APP_BE}`);
 
 export default function Dashboard(props) {
-  //const [socket, setSocket] = useState(null);
   const authState = useSelector((state) => state.auth);
   const changeState = useSelector((state) => state.change.count);
   const dispatch = useDispatch();
@@ -26,17 +25,21 @@ export default function Dashboard(props) {
   const [username, setUsername] = useState("");
   const [messages, setMessages] = useState([]);
   const [conversations, setConversations] = useState([]);
+  const [currentConversation, setCurrentConversation] = useState({});
   const [currentOther, setCurrentOther] = useState("");
   const [userSearchList, setUserSearchList] = useState([]);
-  // useEffect(() => {
-  //   // setSocket(io(`ws://localhost:8001/`))
-  // }, []);
+
+  const socket = useRef();
   const searchInput = useRef();
+  const chatInput = useRef();
+  const newest = useRef();
 
   const { conversationId } = useParams();
 
   const loginHandler = (e) => {
     e.preventDefault();
+
+    socket.current.emit("disconnectSocket");
 
     logout(null);
   };
@@ -52,6 +55,30 @@ export default function Dashboard(props) {
       if (data === []) setUserSearchList([]);
     } catch (e) {
       setUserSearchList([]);
+    }
+  };
+
+  const messageSendHandler = async (e) => {
+    e.preventDefault();
+
+    const message = {
+      sender: authState.user.id,
+      conversationId: conversationId,
+      content: chatInput.current.value,
+    };
+
+    const receiverId = currentConversation.members.find(
+      (member) => member !== authState.user.id
+    );
+
+    try {
+      const { data } = await instance.post("/api/messages", message);
+      setMessages([...messages, data]);
+      chatInput.current.value = "";
+
+      socket.current.emit("sendMessage", { data, receiverId });
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -81,6 +108,9 @@ export default function Dashboard(props) {
         );
         setConversations(data);
 
+        const currCon = data.find((c) => c._id === conversationId);
+        setCurrentConversation(currCon);
+
         searchInput.current.value = "";
         setUserSearchList([]);
       } catch (e) {
@@ -88,16 +118,13 @@ export default function Dashboard(props) {
       }
     };
     fetchConversations();
-  }, [changeState, authState.user.id]);
+  }, [conversationId, changeState, authState.user.id]);
 
   useEffect(() => {
     const fetchMessages = async () => {
       try {
         const { data } = await instance.get(`api/messages/${conversationId}`);
 
-        const currentConversation = conversations.find(
-          (c) => c._id === conversationId
-        );
         const otherUser = currentConversation.members.find(
           (m) => m !== authState.user.id
         );
@@ -107,12 +134,27 @@ export default function Dashboard(props) {
 
         setCurrentOther(otherName);
         setMessages(data);
+
+        newest.current.scrollIntoView();
       } catch (e) {
         console.log(e);
       }
     };
     conversationId && fetchMessages();
-  }, [authState.user.id, conversationId, conversations]);
+  }, [authState.user.id, conversationId, conversations, currentConversation]);
+
+  useEffect(() => {
+    socket.current = io(process.env.REACT_APP_BE);
+    socket.current.emit("addUser", authState.user.id);
+  }, [authState.user.id]);
+
+  useEffect(() => {
+    socket.current.on("getMessage", (data) => {
+      setMessages([...messages, data]);
+    });
+
+    newest.current.scrollIntoView();
+  }, [messages]);
 
   return (
     <>
@@ -169,6 +211,7 @@ export default function Dashboard(props) {
                 mine={authState.user.id === m.sender ? true : false}
               />
             ))}
+            <div ref={newest} style={{ height: 0 }}></div>
           </div>
           <div className="dashboardChat">
             <form className="dashboardChatForm">
@@ -176,8 +219,14 @@ export default function Dashboard(props) {
                 type="text"
                 className="dashboardChatInput"
                 placeholder="Aa"
+                ref={chatInput}
               />
-              <button className="dashboardChatButton">Send</button>
+              <button
+                className="dashboardChatButton"
+                onClick={messageSendHandler}
+              >
+                Send
+              </button>
             </form>
           </div>
         </div>

@@ -1,12 +1,13 @@
 import axios from "axios";
 
-const token = localStorage.getItem('access_token');
-
 const instance = axios.create({
     baseURL: process.env.REACT_APP_BE,
-    headers: {
-        Authorization: `Bearer ${token}`
-    }
 })
+
+instance.interceptors.request.use(function (config) {
+    let token = localStorage.getItem("access_token");
+    config.headers["Authorization"] = "Bearer " + token;
+    return config;
+  });
 
 export default instance;
