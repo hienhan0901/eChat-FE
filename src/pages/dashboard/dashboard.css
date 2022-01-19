@@ -121,6 +121,10 @@
   background-color: rgb(250, 250, 250);
 }
 
+.currentConversation {
+  background-color: rgb(250, 250, 250);
+}
+
 /* .dashboardContent {
   display: flex;
   flex-direction: column;
@@ -217,14 +221,15 @@
 }
 
 .message {
-  background-color: royalblue;
+  
+  background-color: white;
+  color:black;
   text-align: left;
   border-radius: 5px;
   margin: 10px 25px;
   padding: 10px 15px;
   /* width: auto; */
   max-width: calc(100% - 33%);
-  color: white;
   word-wrap: break-word;
   box-sizing: border-box;
   display: flex;
@@ -239,6 +244,38 @@
 
 .mineMsg {
   align-self: flex-end;
-  background-color: white;
-  color:black
+  background-color: royalblue;
+  color: white;
+}
+
+.dashboardSearchList {
+  overflow-y: auto;
+  max-height: calc(100vh - 165px);
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: auto;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.dashboardSearchList li {
+  list-style: none;
+  text-align: left;
+}
+
+.dashboardSearchList li a {
+  text-decoration: none;
+  color: black;
+}
+
+.dashboardSearchList li a div {
+  padding-left: 16px;
+  height: 45px;
+  line-height: 45px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.dashboardSearchList li a div:hover {
+  background-color: rgb(250, 250, 250);
 }

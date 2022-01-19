@@ -26,14 +26,16 @@ function App() {
               <Link to="/">Dashboard</Link>
             </li>
           </ul> */}
-          <Routes>
-            <Route path="/login" element={<Login />}>
-            </Route>
-            <Route path="/register" element={<Register />}>
-            </Route>
-            <Route path="/" element={<Dashboard />}>
-            </Route>
-          </Routes>
+        <Routes>
+          <Route path="/login" element={<Login />}>
+          </Route>
+          <Route path="/register" element={<Register />}>
+          </Route>
+          <Route path="/" element={<Dashboard />}>
+          </Route>
+          <Route path="/:conversationId" element={<Dashboard />}>
+          </Route>
+        </Routes>
         {/* </div> */}
       </BrowserRouter>
     </div>
